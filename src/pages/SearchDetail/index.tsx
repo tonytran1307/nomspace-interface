@@ -84,7 +84,7 @@ export const SearchDetail: React.FC = () => {
             {/* Sidebar */}
             <Sidebar openExtendModal={() => setExtendModalOpen(true)} />
             {/* Page */}
-            {nom && name ? (
+            {nom !== null ? (
               <Flex
                 sx={{
                   alignItems: "center",
@@ -163,7 +163,7 @@ export const SearchDetail: React.FC = () => {
                     </Box>
                   </Flex>
                   {/* NFTs */}
-                  {nom.owner == null ? (
+                  {nom.owner == null && name ? (
                     <ReserveView name={name} />
                   ) : (
                     <>
@@ -319,13 +319,21 @@ export const SearchDetail: React.FC = () => {
               </Flex>
             ) : (
               <Container sx={{ textAlign: "center", mt: 42 }}>
-                <Heading as="h1" sx={{ fontSize: 42 }}>
-                  Invalid name.
-                </Heading>
-                <Text sx={{ display: "block" }} mb={16}>
-                  Please try searching again
-                </Text>
-                <SearchBar />
+                {name ? (
+                  <Flex sx={{ justifyContent: "center" }}>
+                    <Spinner />
+                  </Flex>
+                ) : (
+                  <>
+                    <Heading as="h1" sx={{ fontSize: 42 }}>
+                      Invalid name.
+                    </Heading>
+                    <Text sx={{ display: "block" }} mb={16}>
+                      Please try searching again
+                    </Text>
+                    <SearchBar />
+                  </>
+                )}
               </Container>
             )}
           </Flex>
