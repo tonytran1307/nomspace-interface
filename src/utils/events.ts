@@ -1,7 +1,7 @@
 import { Contract, Event, EventFilter } from "ethers";
 import localforage from "localforage";
 
-const BUCKET_SIZE = 10000;
+const BUCKET_SIZE = 100_000;
 
 export const getPastEvents = async (
   contract: Contract,
